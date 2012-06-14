@@ -1,0 +1,42 @@
+xi_article_article:
+    pattern:  /article/admin
+    defaults: { _controller: XiArticleBundle:Article:list }
+       
+xi_article_article_new:
+    pattern:  /article/admin/new
+    defaults: { _controller: XiArticleBundle:Article:new }
+
+xi_article_article_create:
+    pattern:  /article/admin/create
+    defaults: { _controller: XiArticleBundle:Article:create }
+    requirements: { _method: post }
+
+xi_article_article_edit:
+    pattern:  /article/admin/{id}/edit
+    defaults: { _controller: XiArticleBundle:Article:edit }
+    
+xi_article_article_update:
+    pattern:  /article/admin/{id}/udpate
+    defaults: { _controller: XiArticleBundle:Article:update }
+    requirements: { _method: post }
+    
+xi_article_article_delete:
+    pattern:  /article/admin/{id}/delete
+    defaults: { _controller: XiArticleBundle:Article:delete }
+    
+xi_article_article_preview:
+    pattern:  /article/admin/preview/{id}
+    defaults: { _controller: XiArticleBundle:Article:preview }
+
+xi_article_block_article_selection:
+    pattern:  /block/admin/{id}/article_selection
+    defaults: { _controller: XiArticleBundle:Block:articleSelection }
+    
+xi_article_block_article_selection_update:
+    pattern:  /block/admin/{block}/article_selection/update/article/{article}
+    defaults: { _controller: XiArticleBundle:Block:updateArticleSelection }
+    
+xi_article_article_show:
+    pattern:  /article/{id}
+    defaults: { _controller: XiArticleBundle:Article:show}   
+ 

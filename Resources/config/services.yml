@@ -1,0 +1,46 @@
+services:
+    xi_article.service.article:
+        class:     Xi\Bundle\ArticleBundle\Service\ArticleService
+        arguments: ["@doctrine.orm.entity_manager", "@form.factory", "@xi_article.repository.article", "@service_container"]
+        tags:
+          -  { name: tag.loader }     
+          
+    xi_article.repository.article:
+        class:           Xi\Bundle\ArticleBundle\Entity\Article
+        arguments:       [Xi\Bundle\ArticleBundle\Entity\Article]
+        factory_service: doctrine.orm.entity_manager
+        factory_method:  getRepository        
+
+    xi_article.service.block:
+        class:     Xi\Bundle\ArticleBundle\Service\BlockService
+        arguments: ["@doctrine.orm.entity_manager", "@form.factory", "@xi_article.repository.block"]   
+    
+    xi_article.repository.block:
+        class:           Xi\Bundle\ArticleBundle\Entity\Block
+        arguments:       [Xi\Bundle\ArticleBundle\Entity\Block]
+        factory_service: doctrine.orm.entity_manager
+        factory_method:  getRepository
+
+    xi_article.type.datepicker:
+        class: Xi\Bundle\ArticleBundle\Form\Type\DatePickerType
+        tags:
+            - { name: form.type, alias: datepicker }     
+      
+    article_block.twig.extension:
+        class: Xi\Bundle\ArticleBundle\Twig\Extensions\ArticleBlock
+        arguments: ["@twig", "@xi_article.service.block" ]
+        tags:
+          -  { name: twig.extension }
+
+    article_item.twig.extension:
+        class: Xi\Bundle\ArticleBundle\Twig\Extensions\ArticleItem
+        arguments: ["@twig", "@xi_tag.service.tag", "%xi_article%"]
+        tags:
+          -  { name: twig.extension }
+          
+
+    article_renderer.twig.extension:
+        class: Xi\Bundle\ArticleBundle\Twig\Extensions\ArticleRenderer
+        arguments: ["@twig"]
+        tags:
+          -  { name: twig.extension }             

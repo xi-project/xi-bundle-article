@@ -1,0 +1,33 @@
+{% extends articleParentLayout %}
+
+{% block content %}
+    <article class="article-full" >
+        <h1>
+            {{article.title}}
+            {% if (is_granted(editRoles))%}
+                <div class="tools">
+                    <span class="edit ui-icon ui-icon-pencil">
+                        <a href="{{ path('xi_article_article_edit', {'id': article.id }) }}" title="{{ 'article.edit'|trans }}"></a>
+                    </span>
+                </div>
+            {% endif %}
+        </h1>
+
+        <div class="article-content">
+            {{article.content | raw}}   
+        </div>
+
+        <div class="meta-info" >
+            <span class="updated">
+                {% if article.updated %}
+                    {{'article.updated'|trans}}  {{ article.updated|date('d.m.Y H:i') }}
+                {% endif %}   
+            </span>
+            <span class="publish-date">
+                {% if article.publishDate %}
+                    {{'article.publish_date'|trans}}  {{ article.publishDate|date('d.m.Y H:i') }}
+                {% endif %}
+            </span>
+        </div>
+    </article>
+{% endblock %}

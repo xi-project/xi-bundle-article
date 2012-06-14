@@ -1,0 +1,21 @@
+{% extends articleAdminParentLayout %}
+
+{% block content %}
+
+<div class="item">
+    <h1>
+        <a href="{{ path('xi_article_article') }}">
+            {{ 'article.articles'|trans }}
+        </a>
+        &raquo; {{'article.form.edit'|trans}}
+    </h1>
+ 
+    <form action="{{ path('xi_article_article_update', {'id' : article.id}) }}" class="ajax-form article-form" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit">{{'article.form.edit.submit_button'|trans}}</button>
+        </p>
+    </form>
+</div>
+
+{% endblock %}

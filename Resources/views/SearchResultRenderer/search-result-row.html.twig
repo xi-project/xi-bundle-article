@@ -1,0 +1,38 @@
+<div class="item">
+    <header>
+        <div class="information">
+            <h3><a class="dialog" header="{{'article.preview_text'|trans}}" title="{{'article.preview_text'|trans}}" href="{{ path('xi_article_article_preview', {'id': article.id })}}">{{article.title}}</a></h3>
+            <div class="meta-info" >
+                <span class="updated">
+                    {% if article.updated %}
+                        {{'article.updated'|trans}}  {{ article.updated|date('d.m.Y H:i') }}
+                    {% endif %}   
+                </span>
+                <span class="publish-date">
+                    {% if article.publishDate %}
+                        {{'article.publish_date'|trans}}  {{ article.publishDate|date('d.m.Y H:i') }}
+                    {% endif %}
+                </span>
+                <span class="expiration-date">
+                    {% if article.ExpirationDate %}
+                        {{'article.expiration_date'|trans}}  {{ article.ExpirationDate|date('d.m.Y H:i') }}
+                    {% endif %}    
+
+                </span>
+            </div>
+        </div>
+
+        <div class="tools">
+            <ul>
+                <li class="edit ui-icon ui-icon-pencil">
+                    <a href="{{ path('xi_article_article_edit', {'id': article.slug }) }}" title="{{ 'article.edit'|trans }}"></a>
+                </li>
+                <li class="delete ui-icon ui-icon-trash">
+                    {{ xi_confirmdialog_render(url('xi_article_article_delete', { 'id': article.slug}), {'header': 'article.delete'|trans}) }}
+                </li>
+            </ul>
+        </div>
+
+    </header>
+</div>
+                

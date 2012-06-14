@@ -1,0 +1,27 @@
+    <div id="article-container">        
+        {% for article in articles %}
+                <div class="item">
+                    <header>
+                        <div class="information">
+                            <h3><a class="dialog" header="{{'article.preview'|trans}}" title="{{'article.preview'|trans}}" href="{{ path('xi_article_article_preview', {'id': article.id })}}">{{article.title}}</a></h3>
+                            <br />
+                             <div class="meta-info" >
+                                <span class="updated">
+                                    {{'article.updated'|trans}}  {{ article.updated|date('d.m.Y H:i') }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="tools">
+                            <ul>
+                                <li class="change ui-icon ui-icon-refresh">
+                                    <a class="ajax-link" href="{{ path('xi_article_block_article_selection_update', {'article': article.id, 'block' : block.id }) }}" title="{{ 'article.change'|trans }}"></a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </header>
+                </div>
+        {% endfor %}
+            
+    </div>

@@ -1,0 +1,36 @@
+article:
+  articles:           "Artikkelit"
+  create:             "Luo uusi artikkeli"
+  edit:               "Muokkaa artikkelia"
+  delete:             "Poista artikkeli"
+  updated:            "Päivitetty"
+  preview_text:       "Esikatselu"
+  publish_date:       "Julkaisupäivä"
+  expiration_date:    "Poistumispäivä"
+  remove:
+    success:          "Artikkeli poistettu"
+  block:
+    read_full_article: "Lue koko artikkeli"    
+    change:           "Vaihda artikkelia"
+    change.success:   "Blokin sisältö on vaihdettu"   
+    change.failure:   "Blokin sisällönvaihto epäonnistui"
+  change:             "Vaihda"
+  preview:      
+    introduction:     "Artikkelin johdanto"
+    content:          "Koko artikkeli"
+  form.edit:          "Muokkaa artikkelia"  
+  form.create:        "Luo uusi artikkeli"  
+  form: 
+    title:            "Otsikko"
+    content:          "Sisältö"
+    introduction:     "Johdanto"
+    edit:
+      success:        "Artikkeli päivitetty"
+      submit_button:  "Tallenna"    
+    create:
+      submit_button:  "Tallenna"
+      success:        "Artikkeli luotu"
+    publish_date:     "Julkaisupäivä"
+    expiration_date:  "Poistumispäivä"
+
+      

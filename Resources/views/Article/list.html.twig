@@ -1,0 +1,22 @@
+{% extends articleAdminParentLayout %}
+
+{% block content %}
+    <h1>	  	
+        {{'article.articles'|trans}}    	  	
+        <a href="{{ path('xi_article_article_new') }}" class="button article-create-button">	  	
+            {{ 'article.create'|trans }}	  	
+        </a>	  	
+    </h1>
+
+    {{xi_search_form('article')}}
+
+    <div id="article-container" class="search-result">
+
+        {% for article in articles %}
+            {{article_render_search_row(article)}}
+                
+        {% endfor %}
+        <div class="clearer"></div>
+    </div>
+
+{% endblock %}
