@@ -1,11 +1,11 @@
 <?php
 
-namespace SBA\ArticleBundle\Twig\Extensions;
+namespace Xi\Bundle\ArticleBundle\Twig\Extensions;
 
 use \Twig_Environment,
-    SBA\SearchBundle\Service\Search\Result\SearchResult,
-    SBA\ArticleBundle\Entity\Article,
-    SBA\SearchBundle\Twig\Extensions\SearchRenderer;
+    Xi\Bundle\SearchBundle\Service\Search\Result\SearchResult,
+    Xi\Bundle\ArticleBundle\Entity\Article,
+    Xi\Bundle\SearchBundle\Twig\Extensions\SearchRenderer;
 
 class ArticleRenderer extends \Twig_Extension implements SearchRenderer
 {
@@ -33,7 +33,7 @@ class ArticleRenderer extends \Twig_Extension implements SearchRenderer
         if($data instanceof SearchResult){
             $data = $this->convertToArticle($data->getSource());
         } 
-        return $this->twig->render('SBAArticleBundle:SearchResultRenderer:entity-row.html.twig',
+        return $this->twig->render('XiArticleBundle:SearchResultRenderer:entity-row.html.twig',
             array('article' => $data, 'options' => $options, ));      
 
 
@@ -41,7 +41,7 @@ class ArticleRenderer extends \Twig_Extension implements SearchRenderer
 
     /**
      * @param SearchResult $data
-     * @return \SBA\ArticleBundle\Entity\Article 
+     * @return \Xi\Bundle\ArticleBundle\Entity\Article 
      */
     private function convertToArticle($data)
     {
