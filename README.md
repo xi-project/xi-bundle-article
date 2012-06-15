@@ -46,6 +46,10 @@ xi-bundle-selector
 
 ### routing.yml -file
 ```yml
+XiTagBundle:
+    resource: "@XiTagBundle/Resources/config/routing.yml"
+    pre
+
 XiArticleBundle:
     resource: "@XiArticleBundle/Resources/config/routing.yml"
     pre
