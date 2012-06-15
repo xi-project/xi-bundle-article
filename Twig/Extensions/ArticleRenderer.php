@@ -44,7 +44,7 @@ class ArticleRenderer extends \Twig_Extension implements SearchRenderer
         if($data instanceof SearchResult){
             $data = $this->convertToArticle($data->getSource());
         } 
-        return $this->twig->render('XiArticleBundle:SearchResultRenderer:entity-row.html.twig',
+        return $this->twig->render('XiArticleBundle:SearchResultRenderer:search-result-row.html.twig',
             array('article' => $data, 'options' => $options, ));      
 
 
