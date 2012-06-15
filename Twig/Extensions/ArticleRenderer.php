@@ -22,6 +22,17 @@ class ArticleRenderer extends \Twig_Extension implements SearchRenderer
     {
         $this->twig         = $twig;
     }
+  
+    /**
+     *  @return array
+     */
+    public function getFunctions()
+    {
+        return array(
+            'xi_article_seawrch_row_renderer' => new \Twig_Function_Method(
+            $this, 'articleList', array('is_safe' => array('html'))),
+        );
+    }
     
     /**
      * @param mixed $data
