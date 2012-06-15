@@ -29,8 +29,8 @@ class ArticleRenderer extends \Twig_Extension implements SearchRenderer
     public function getFunctions()
     {
         return array(
-            'xi_article_seawrch_row_renderer' => new \Twig_Function_Method(
-            $this, 'articleList', array('is_safe' => array('html'))),
+            'xi_article_search_row_renderer' => new \Twig_Function_Method(
+            $this, 'searchRenderer', array('is_safe' => array('html'))),
         );
     }
     
@@ -39,7 +39,7 @@ class ArticleRenderer extends \Twig_Extension implements SearchRenderer
      * @param array $options
      * @return string
      */
-    public function searchRenderer($data, $options)
+    public function searchRenderer($data, $options = array())
     {
         if($data instanceof SearchResult){
             $data = $this->convertToArticle($data->getSource());
