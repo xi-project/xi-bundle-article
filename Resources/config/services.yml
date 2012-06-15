@@ -38,7 +38,6 @@ services:
         tags:
           -  { name: twig.extension }
           
-
     article_renderer.twig.extension:
         class: Xi\Bundle\ArticleBundle\Twig\Extensions\ArticleRenderer
         arguments: ["@twig"]
