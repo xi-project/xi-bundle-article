@@ -24,31 +24,24 @@ class ArticleItemTest extends PHPUnit_Framework_Testcase
     public function setUp()
     {
         parent::setUp();
-
-        $tagService = $this->getMockBuilder('Xi\Bundle\TagBundle\Service\TagService')
-                     ->disableOriginalConstructor()
-                     ->getMock();
-
+        
         $this->articles = array(
             $this->createArticle(1),
             $this->createArticle(2),
             $this->createArticle(3),
             $this->createArticle('diibadaaba')
         );
-
-        $this->getEntityManager()->flush();
-
-        $tagService->expects($this->any())
+        
+        $this->tagService = $this->getMockBuilder('Xi\Bundle\TagBundle\Service\TagService')->disableOriginalConstructor()->getMock();
+        $this->tagService->expects($this->any())
             ->method('getResources')
             ->will($this->returnValue(
                 array('article' => $this->articles)
             ));
 
         $twig = $this->getMock('Twig_Environment');
-
         $config = array('acl_roles' => array('edit' => array('ROLE_ADMIN')));
-
-        $this->articleItem = new ArticleItem($twig, $tagService, $config);
+        $this->articleItem = new ArticleItem($twig, $this->tagService, $config);
     }
 
     /**
@@ -62,31 +55,25 @@ class ArticleItemTest extends PHPUnit_Framework_Testcase
 
     /**
      * @test
-     * @group article
      */
-    public function findsSingleArticleFromSeveral()
+    public function articleList()
     {
-        $this->assertNull($this->articleItem->articleItem(array(), 2));
-
-        $article = $this->articleItem->articleItem($this->articles, 2);
-        $this->assertEquals($article->getId(), 2);
-
-        $article = $this->articleItem->articleItem($this->articles, 0987987698);
-        $this->assertEquals($article->getId(), 1);
-
-        $article = $this->articleItem->articleItem($this->articles, 0987987698);
-        $this->assertEquals($article->getId(), 1);
+        $this->assertNull($this->articleItem->articleItem(array()));
+        $article = $this->articleItem->articleItem($this->articles);
+     
     }
 
     /**
      * @test
-     * @group article
+     * test
      */
-    public function findsSingleArticleBySlug()
+    public function articleItem()
     {
-        $article = $this->articleItem->articleItem($this->articles, 'diibadaaba');
-        $this->assertEquals($article->getSlug(), 'diibadaaba');
-    }
+        $article = $this->articleItem->articleItem($this->articles, 'slugdiibadaaba');
+        $this->assertEquals('slugdiibadaaba', $article->getSlug());
+        $article = $this->articleItem->articleItem($this->articles, 'iddiibadaaba');
+        $this->assertEquals('iddiibadaaba', $article->getId());     
+     }
 
     /**
      * @param string $name
@@ -94,11 +81,17 @@ class ArticleItemTest extends PHPUnit_Framework_Testcase
      */
     private function createArticle($name)
     {
-        $article = new Article();
-        $article->setTitle($name)
+        $article= $this->getMockBuilder('Xi\Bundle\ArticleBundle\Entity\Article')->setMethods(array('getId', 'getSlug'))->getMock();
+        $article->expects($this->any())
+            ->method('getId')
+            ->will($this->returnValue('id'.$name));
+        $article->expects($this->any())
+            ->method('getSlug')
+            ->will($this->returnValue('slug'.$name));
+        
+        $article->setTitle($name)        
                 ->setIntroduction('introduction for '.$name)
                 ->setContent('content for '.$name);
-        $this->getEntityManager()->persist($article);
         return $article;
     }
 }

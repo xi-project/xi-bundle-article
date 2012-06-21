@@ -2,10 +2,10 @@
 
 namespace Xi\Bundle\ArticleBundle\Repository;
 
-use Xi\Doctrine\ORM\Repository,
+use Doctrine\ORM\EntityRepository,
     Xi\Bundle\ArticleBundle\Entity\Article;
 
-class ArticleRepository extends Repository
+class ArticleRepository extends EntityRepository
 {
 
     /**

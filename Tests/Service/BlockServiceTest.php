@@ -9,8 +9,13 @@ use PHPUnit_Framework_Testcase,
     Symfony\Component\Form\Form,
     Doctrine\ORM\EntityManager,
     Xi\Bundle\ArticleBundle\Entity\Block,
+    Xi\Bundle\ArticleBundle\Entity\Article,
     Xi\Bundle\ArticleBundle\Service\BlockService;
 
+/**
+ * @group service
+ * @group block 
+ */
 class BlockServiceTest extends PHPUnit_Framework_Testcase
 {
     /**
@@ -21,13 +26,17 @@ class BlockServiceTest extends PHPUnit_Framework_Testcase
     public function setUp()
     {
         parent::setUp();
-        
+
+        $this->em =                 $this->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
+        $this->formFactory =        $this->getMockBuilder('Symfony\Component\Form\FormFactory')->disableOriginalConstructor()->getMock();              
+        $this->blockRepository =    $this->getMockBuilder('Xi\Bundle\ArticleBundle\Repository\blockRepository')->disableOriginalConstructor()->getMock();
+
         $this->service = new BlockService(
-            $this->getContainer()->get('doctrine.orm.entity_manager'),
-            $this->getContainer()->get('form.factory'),  
-            $this->getContainer()->get('xi_article.repository.block')
+            $this->em,
+            $this->formFactory,
+            $this->blockRepository
         );
-        $this->repository = $this->getContainer()->get('xi_article.repository.block');
+
     }
     
     protected function setUpFixtures()
@@ -36,65 +45,59 @@ class BlockServiceTest extends PHPUnit_Framework_Testcase
     }
     
     /**
-     * @test
-     * @group service
-     * @group block
-     */  
-    public function getBlocks()
-    {
-        $this->service->saveBlock($this->createBlock('test1')); 
-        $this->service->saveBlock($this->createBlock('test2'));
-        $this->service->saveBlock($this->createBlock('test3'));
-
-        $this->assertEquals(2, $this->countNotEmptyBlocks($this->service->getBlocksByIds(array('test1','test2','test4'))));
-    }
-
-    /**
-     * @param array $blocks
-     * @return int 
+     * @test 
      */
-    private function countNotEmptyBlocks($blocks)
-    {
-        $results = 0;
-        foreach($blocks as $block)
-        {
-            if(!empty($block)) {
-                $results++;
-            }
-        }   
-        return $results;
+    public function getBlockById()
+    {    
+        $this->blockRepository->expects($this->once())->method('find')->with(12);
+        $this->service->getBlockById(12); 
     }
     
     /**
      * @test
-     * @group service
-     * @group block
-     */  
-    public function getBlockForm()
-    {  
-        $form = $this->service->getBlockForm($this->createBlock('testing'));
-        $this->assertInstanceOf('Symfony\Component\Form\Form', $form);
-    }   
-    
-    /**
-     * @test
-     * @group service
-     * @group block
-     */  
-    public function createBlockTest()
-    {
-        $block = $this->service->createBlock('testing');
-        $this->assertEquals('testing', $this->service->getBlockById('testing')->getId());
-    }
-    
-    /**
-     * @param type $id
-     * @return Block 
      */
-    private function createBlock($id)
+    public function getBlocksByIds()
     {
+        $this->blockRepository->expects($this->any())->method('find')->will($this->returnValue('tussi'));
+        $blocks = $this->service->getBlocksByIds(array(1,2,3)); 
+   
+        $this->assertCount(3, $blocks);
+    }
+    
+    
+    /**
+     * @test
+     */
+    public function createBlock()
+    {
+        $this->em->expects($this->once())->method('persist');
+        $this->em->expects($this->once())->method('flush');  
+        $block = $this->service->createBlock('tussi');
+        $this->assertEquals('tussi', $block->getId());
+
+    }
+    
+    /**
+     * @test 
+     */
+    public function updateBlocksArticle()
+    {
+        
         $block = new Block();
-        $block->setId($id);
-        return $block;
-    }    
+        $article = new Article();
+        $this->em->expects($this->once())->method('persist');
+        $this->em->expects($this->once())->method('flush');  
+        $updatedBlock = $this->service->updateBlocksArticle($block, $article);
+        $this->assertEquals($block, $updatedBlock);
+    }
+ 
+    /**
+     * @test 
+     */    
+    public function getBlockForm()
+    {
+        $this->formFactory->expects($this->once())->method('create');
+        $this->service->getBlockForm(new Block());
+    }
+     
 }

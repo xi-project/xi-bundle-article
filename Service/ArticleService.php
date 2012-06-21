@@ -107,12 +107,13 @@ class ArticleService extends AbstractTaggableService
         } else {
             $article = $this->repository->findBySlug($articleReference);
         }
-        
+
         if($article) {
             $this->getTagService()->getTagManager()->loadTagging($article);
+            return $article;
         }
-        return $article;  
     }
+    
     /**
      * @param int $id
      * @return Article 
@@ -147,6 +148,8 @@ class ArticleService extends AbstractTaggableService
     }
     
     /**
+     *  these should be replaced by query object landing method
+     * 
      * @param array $ids
      * @param array $options
      * @param array $tagNames
@@ -158,6 +161,8 @@ class ArticleService extends AbstractTaggableService
     }
     
     /**
+     *  these should be replaced by query object landing method
+     * 
      * @param array $ids
      * @param array $options
      * @param array $tagNames 

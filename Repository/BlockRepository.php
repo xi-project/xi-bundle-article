@@ -2,9 +2,9 @@
 
 namespace Xi\Bundle\ArticleBundle\Repository;
 
-use Xi\Doctrine\ORM\Repository,
+use Doctrine\ORM\EntityRepository,
     Xi\Bundle\ArticleBundle\Entity\Block;
 
-class BlockRepository extends Repository
+class BlockRepository extends EntityRepository
 {
 }

@@ -7,7 +7,10 @@
         "symfony/framework-bundle": "=v2.0.14",
         "symfony/form": "=v2.0.14",
         "symfony/dependency-injection": "=v2.0.14",
-        "xi/tag-bundle": "dev-master"
+        "xi/tag-bundle": "dev-master",
+        "doctrine/orm" : "2.2.2",
+        "twig/twig": "1.*",
+        "xi/search-bundle": "dev-master"
     },
     "autoload": {
         "psr-0": {

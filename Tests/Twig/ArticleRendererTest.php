@@ -10,7 +10,7 @@ use     PHPUnit_Framework_TestCase,
         \Twig_Error_Runtime;
 
 /**
- * @group twig-extensionf
+ * @group twig
  * @group search
  */
 class ArticleRendererTest extends PHPUnit_Framework_TestCase
@@ -30,12 +30,10 @@ class ArticleRendererTest extends PHPUnit_Framework_TestCase
     /**
      * @test
      */
-    public function  searchRowRenderer()
+    public function  searchRenderer()
     {
         $this->searchResult->expects($this->once())->method('getSource')->with()->will($this->returnValue(array('title' => 'title')));
         $this->environment->expects($this->once())->method('render')->will($this->returnValue('template'));  
-        $this->articleRenderer->searchRowRenderer($this->searchResult);
-    }      
-
-    
+        $this->articleRenderer->searchRenderer($this->searchResult);
+    }        
 }
