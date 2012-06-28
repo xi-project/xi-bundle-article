@@ -29,7 +29,7 @@ class BlockServiceTest extends PHPUnit_Framework_Testcase
 
         $this->em =                 $this->getMockBuilder('Doctrine\ORM\EntityManager')->disableOriginalConstructor()->getMock();
         $this->formFactory =        $this->getMockBuilder('Symfony\Component\Form\FormFactory')->disableOriginalConstructor()->getMock();              
-        $this->blockRepository =    $this->getMockBuilder('Xi\Bundle\ArticleBundle\Repository\blockRepository')->disableOriginalConstructor()->getMock();
+        $this->blockRepository =    $this->getMockBuilder('Xi\Bundle\ArticleBundle\Repository\BlockRepository')->disableOriginalConstructor()->getMock();
 
         $this->service = new BlockService(
             $this->em,
