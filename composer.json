@@ -10,12 +10,12 @@
         }
     ],          
     "require": {
-        "symfony/framework-bundle": "=v2.0.14",
-        "symfony/form": "=v2.0.14",
-        "symfony/dependency-injection": "=v2.0.14",
-        "xi/tag-bundle": "dev-master",
+        "symfony/framework-bundle": "=v2.1.0-BETA1",
+        "symfony/form": "=v2.1.0-BETA1",
+        "symfony/dependency-injection": "=v2.1.0-BETA1",   
         "doctrine/orm" : "2.2.2",
         "twig/twig": "1.*",
+        "xi/tag-bundle": "2.1.x-dev",
         "xi/search-bundle": "dev-master"
     },
     "autoload": {
