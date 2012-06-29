@@ -17,19 +17,24 @@
                     {% if article.ExpirationDate %}
                         {{'article.expiration_date'|trans}}  {{ article.ExpirationDate|date('d.m.Y H:i') }}
                     {% endif %}    
-
                 </span>
             </div>
         </div>
 
         <div class="tools">
             <ul>
-                <li class="edit ui-icon ui-icon-pencil">
-                    <a href="{{ path('xi_article_article_edit', {'id': article.slug }) }}" title="{{ 'article.edit'|trans }}"></a>
-                </li>
-                <li class="delete ui-icon ui-icon-trash">
-                    {{ xi_confirmdialog_render(url('xi_article_article_delete', { 'id': article.slug}), {'header': 'article.delete'|trans}) }}
-                </li>
+                {% if options.change is defined and options.change %}
+                    <li class="change ui-icon ui-icon-refresh">
+                        <a class="ajax-link" href="{{ path('xi_article_block_article_selection_update', {'article': article.slug, 'block' : options.blockId }) }}" title="{{ 'article.change'|trans }}"></a>
+                    </li>
+                {% else %}    
+                    <li class="edit ui-icon ui-icon-pencil">
+                        <a href="{{ path('xi_article_article_edit', {'id': article.slug }) }}" title="{{ 'article.edit'|trans }}"></a>
+                    </li>
+                    <li class="delete ui-icon ui-icon-trash">
+                        {{ xi_confirmdialog_render(url('xi_article_article_delete', { 'id': article.slug}), {'header': 'article.delete'|trans}) }}
+                    </li>
+                {% endif %}
             </ul>
         </div>
 
