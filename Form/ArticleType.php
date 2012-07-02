@@ -3,14 +3,14 @@
 namespace Xi\Bundle\ArticleBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 use Xi\Bundle\TagBundle\Form\Type\TagType;
 use Xi\Bundle\ArticleBundle\Form\Type\DatePickerType;
 
 class ArticleType extends AbstractType
 {
     
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {     
         $builder
             ->add('title',      'text',         array('label' => 'article.form.title'))
