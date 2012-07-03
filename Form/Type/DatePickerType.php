@@ -22,7 +22,7 @@ class DatePickerType extends DateType
         return 'datepicker';
     }  
     
-    public function getDefaultOptions(array $options)
+    public function getDefaultOptions()
     {
         $newoptions = array(
 
@@ -32,7 +32,7 @@ class DatePickerType extends DateType
             'attr'      => array('class' =>  $this->config['datepicker_class']),
             'required'  => false,
         );  
-        return array_merge(parent::getDefaultOptions($options), $newoptions);
+        return array_merge(parent::getDefaultOptions(), $newoptions);
     }
 
 }
