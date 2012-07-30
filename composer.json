@@ -10,16 +10,10 @@
         }
     ],
     "minimum-stability": "dev",
-    "repositories": [
-        {
-            "type": "git",
-            "url": "http://github.com/xi-project/FPNTagBundle"
-        }
-    ],
     "require": {
-        "symfony/framework-bundle": "=v2.1.0-BETA1",
-        "symfony/form": "=v2.1.0-BETA1",
-        "symfony/dependency-injection": "=v2.1.0-BETA1",   
+        "symfony/framework-bundle": "=v2.1.0-BETA4",
+        "symfony/form": "=v2.1.0-BETA4",
+        "symfony/dependency-injection": "=v2.1.0-BETA4",   
         "doctrine/orm" : "2.2.2",
         "twig/twig": "1.*",
         "xi/tag-bundle": "2.1.x-dev",
