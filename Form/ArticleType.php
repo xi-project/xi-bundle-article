@@ -35,7 +35,7 @@ class ArticleType extends AbstractType
                 'format'    => 'dd.MM.yyyy',
             ))
                              
-            ->add('tags', 'tag_selector');
+            ->add('tags', 'tag');
     }
 
     public function getName()
