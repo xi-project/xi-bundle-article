@@ -38,12 +38,7 @@ class BlockServiceTest extends PHPUnit_Framework_Testcase
         );
 
     }
-    
-    protected function setUpFixtures()
-    {        
-        parent::setUpFixtures();
-    }
-    
+
     /**
      * @test 
      */
@@ -99,5 +94,47 @@ class BlockServiceTest extends PHPUnit_Framework_Testcase
         $this->formFactory->expects($this->once())->method('create');
         $this->service->getBlockForm(new Block());
     }
-     
+
+    /**
+     * @test
+     */
+    public function getArticle()
+    {
+        $block = $this->service->createBlock('testing');
+        $article = new Article();
+        $article->setTitle('nom');
+        $block->setArticle($article);
+        $this->blockRepository
+            ->expects($this->any())
+            ->method('find')
+            ->with('testing')
+            ->will($this->returnValue($block));
+
+        $article = $this->service->getArticleByBlockById('testing');
+
+        $this->assertInstanceOf('Xi\Bundle\ArticleBundle\Entity\Article', $article);
+
+    }
+
+    /**
+     * @test
+     */
+    public function getNullOnErroneusId()
+    {
+        $block = $this->service->createBlock('testing');
+        $article = new Article();
+        $article->setTitle('nom');
+        $block->setArticle($article);
+        $this->blockRepository
+            ->expects($this->any())
+            ->method('find')
+            ->with('testings')
+            ->will($this->returnValue(null));
+
+        $article = $this->service->getArticleByBlockById('testings');
+
+        $this->assertNull($article);
+
+    }
+
 }
