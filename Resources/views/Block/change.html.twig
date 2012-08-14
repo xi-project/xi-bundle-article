@@ -1,4 +1,6 @@
-    <div id="article-container">        
+{{xi_search_form('article', {'change': true, 'blockId': block.id})}}
+
+<div id="article-container" class="search-result">        
         {% for article in articles %}
                 <div class="item">
                     <header>
@@ -15,7 +17,7 @@
                         <div class="tools">
                             <ul>
                                 <li class="change ui-icon ui-icon-refresh">
-                                    <a class="ajax-link" href="{{ path('xi_article_block_article_selection_update', {'article': article.id, 'block' : block.id }) }}" title="{{ 'article.change'|trans }}"></a>
+                                    <a class="ajax-link" href="{{ path('xi_article_block_article_selection_update', {'article': article.slug, 'block' : block.id }) }}" title="{{ 'article.change'|trans }}"></a>
                                 </li>
                             </ul>
                         </div>
@@ -24,4 +26,4 @@
                 </div>
         {% endfor %}
             
-    </div>
+</div>

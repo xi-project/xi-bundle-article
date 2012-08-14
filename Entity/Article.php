@@ -110,6 +110,16 @@ class Article implements Taggable
     }    
     
     /**
+     * @param string $slug
+     * @return Article
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+    
+    /**
      * @return integer 
      */
     public function getId()
@@ -326,4 +336,14 @@ class Article implements Taggable
     {
         $this->slug = '';
     }
+    
+    /**
+     * @return string 
+     */
+    public function getSearchType()
+    {
+        return 'article';
+    }
+    
+    
 }
