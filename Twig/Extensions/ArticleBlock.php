@@ -73,7 +73,10 @@ class ArticleBlock extends \Twig_Extension
             ),
             'xi_content_block' => new \Twig_Function_Method(
             $this, 'contentBlock', array('is_safe' => array('html'))
-            ),            
+            ),
+            'xi_content_block_get_article' => new \Twig_Function_Method(
+                $this, 'getArticleForBlock', array('is_safe' => array('html'))
+            ),
         );
     }
     
@@ -190,5 +193,15 @@ class ArticleBlock extends \Twig_Extension
     public function getName()
     {
         return 'article_block_extension';
+    }
+
+    /**
+     * @param string $blockId
+     * @return Article
+     */
+    public function getArticleForBlock($blockId)
+    {
+        return $this->blockService->getArticleByBlockById($blockId);
+
     }
 }
