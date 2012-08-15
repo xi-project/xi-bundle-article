@@ -117,9 +117,9 @@ class BlockService
     public function getArticleByBlockById($blockId)
     {
         $block = $this->getBlockById($blockId);
-        if($block && $article = $block->getArticle()){
+        if ($block && $article = $block->getArticle()) {
             return $article;
-        }else{
+        } else {
             return null;
         }
 

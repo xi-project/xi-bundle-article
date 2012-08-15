@@ -196,7 +196,7 @@ class ArticleBlock extends \Twig_Extension
     }
 
     /**
-     * @param string $block
+     * @param string $blockId
      * @return Article
      */
     public function getArticleForBlock($blockId)
