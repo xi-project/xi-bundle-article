@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM,
     Symfony\Component\Validator\Constraints as Assert,
     Gedmo\Mapping\Annotation as Gedmo,
     Xi\Bundle\ArticleBundle\Entity\Block,
-    DoctrineExtensions\Taggable\Taggable;
+    DoctrineExtensions\Taggable\Taggable,
+    Xi\Bundle\SearchBundle\Entity\SearchType;
 
 /**
  * Xi\Bundle\ArticleBundle\Entity\Article
@@ -15,7 +16,7 @@ use Doctrine\ORM\Mapping as ORM,
  * @ORM\Table(name="article")
  * @ORM\Entity(repositoryClass="Xi\Bundle\ArticleBundle\Repository\ArticleRepository")
  */ 
-class Article implements Taggable
+class Article implements Taggable, SearchType
 {
     /**
      * @var integer $id

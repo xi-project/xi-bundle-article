@@ -50,14 +50,14 @@
         <div class="tools">
             <ul>
                 {% if options.change is defined and options.change %}
-                    <li class="change ui-icon ui-icon-refresh">
+                    <li class="change">
                         <a class="ajax-link" href="{{ path('xi_article_block_article_selection_update', {'article': article.slug, 'block' : options.blockId }) }}" title="{{ 'article.change'|trans }}"></a>
                     </li>
                 {% else %}    
-                    <li class="edit ui-icon ui-icon-pencil">
+                    <li class="edit">
                         <a href="{{ path('xi_article_article_edit', {'id': article.slug }) }}" title="{{ 'article.edit'|trans }}"></a>
                     </li>
-                    <li class="delete ui-icon ui-icon-trash">
+                    <li class="delete">
                         {{ xi_confirmdialog_render(url('xi_article_article_delete', { 'id': article.slug}), {'header': 'article.delete'|trans}) }}
                     </li>
                 {% endif %}
