@@ -109,5 +109,20 @@ class BlockService
             new BlockType(get_class($block)), $block
         );
     }
-    
+
+    /**
+     * @param  string $blockId
+     * @return Article|null
+     */
+    public function getArticleByBlockById($blockId)
+    {
+        $block = $this->getBlockById($blockId);
+        if ($block && $article = $block->getArticle()) {
+            return $article;
+        } else {
+            return null;
+        }
+
+    }
+
 }
