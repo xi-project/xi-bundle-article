@@ -5,14 +5,14 @@
         <div class="tools">
             <ul>
                 {% if options.change is defined and options.change %}
-                    <li class="change">
+                    <li class="search-result-change">
                         <a class="ajax-link" href="{{ path('xi_article_block_article_selection_update', {'article': article.slug, 'block' : options.blockId }) }}" title="{{ 'article.change'|trans }}"></a>
                     </li>
                 {% else %}    
-                    <li class="edit">
+                    <li class="search-result-edit">
                         <a href="{{ path('xi_article_article_edit', {'id': article.slug }) }}" title="{{ 'article.edit'|trans }}"></a>
                     </li>
-                    <li class="delete">
+                    <li class="search-result-delete">
                         {{ xi_confirmdialog_render(url('xi_article_article_delete', { 'id': article.slug}), {'header': 'article.delete'|trans}) }}
                     </li>
                 {% endif %}
