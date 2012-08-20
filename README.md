@@ -54,3 +54,7 @@ XiArticleBundle:
     resource: "@XiArticleBundle/Resources/config/routing.yml"
     prefix:   /
 ```
+
+### Styling
+
+there is a search result render template, for integration with xi search bundle, be sure to style the respective admin buttons (search-result-edit, search-result-delete, search-result-change) to actually see them
