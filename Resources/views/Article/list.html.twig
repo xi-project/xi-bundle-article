@@ -1,11 +1,11 @@
 {% extends articleAdminParentLayout %}
 
 {% block content %}
-    <h1>	  	
-        {{'article.articles'|trans}}    	  	
-        <a href="{{ path('xi_article_article_new') }}" class="button article-create-button">	  	
-            {{ 'article.create'|trans }}	  	
-        </a>	  	
+    <h1>
+        {{'article.articles'|trans}}
+        <a href="{{ path('xi_article_article_new') }}" class="button article-create-button">
+            {{ 'article.create'|trans }}
+        </a>
     </h1>
 
     {{xi_search_form('article')}}
@@ -14,9 +14,17 @@
 
         {% for article in articles %}
             {{xi_article_search_row_renderer(article)}}
-                
         {% endfor %}
         <div class="clearer"></div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {% javascripts output="/js/article_search.js" filter="coffee,?yui_js"
+        '@XiSearchBundle/Resources/coffee/pagination.coffee'
+        '@XiArticleBundle/Resources/coffee/search.coffee' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}
