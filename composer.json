@@ -11,18 +11,18 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "symfony/framework-bundle": "=v2.0.14",
-        "symfony/form": "=v2.0.14",
-        "symfony/dependency-injection": "=v2.0.14",
-        "xi/tag-bundle": "dev-master",
-        "doctrine/orm" : "2.2.2",
+        "symfony/framework-bundle": "2.1.*",
+        "symfony/form": "2.1.*",
+        "symfony/dependency-injection": "2.1.*",
+        "doctrine/orm" : "2.2.*",
         "twig/twig": "1.*",
+        "xi/tag-bundle": "dev-master",
         "xi/search-bundle": "dev-master"
     },
     "autoload": {
         "psr-0": {
             "Xi\\Bundle\\ArticleBundle": ""
         }
-    }   
-    
+    },
+    "target-dir": "Xi/Bundle/ArticleBundle"
 }
