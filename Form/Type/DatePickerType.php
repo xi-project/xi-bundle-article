@@ -12,17 +12,26 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class DatePickerType extends DateType
 {
     private $config;
-    
+
+    /**
+     * @param array $config
+     */
     public function __construct($config)
     {
        $this->config = $config;
-    }       
-    
+    }
+
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'datepicker';
     }
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         parent::setDefaultOptions($resolver);
