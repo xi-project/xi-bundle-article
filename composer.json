@@ -11,13 +11,13 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "symfony/framework-bundle": "2.1.*",
-        "symfony/form": "2.1.*",
-        "symfony/dependency-injection": "2.1.*",
+        "symfony/framework-bundle": "2.2.*",
+        "symfony/form": "2.2.*",
+        "symfony/dependency-injection": "2.2.*",
         "doctrine/orm" : "2.2.*",
         "twig/twig": "1.*",
-        "xi/tag-bundle": "dev-master",
-        "xi/search-bundle": "dev-master"
+        "xi/tag-bundle": "2.2.x-dev",
+        "xi/search-bundle": "2.2.x-dev"
     },
     "autoload": {
         "psr-0": {
