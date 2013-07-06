@@ -14,7 +14,7 @@
         "symfony/framework-bundle": "2.2.*",
         "symfony/form": "2.2.*",
         "symfony/dependency-injection": "2.2.*",
-        "doctrine/orm" : "2.2.*",
+        "doctrine/orm" : ">=2.2,<2.4-dev",
         "twig/twig": "1.*",
         "xi/tag-bundle": "2.2.x-dev",
         "xi/search-bundle": "2.2.x-dev"
