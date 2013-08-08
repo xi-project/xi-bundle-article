@@ -32,8 +32,7 @@ class Article implements Taggable, SearchType
      * 
      * @ORM\Column(name="title", type="string", length=255)
      * @Assert\NotBlank(message="article.validation.title.notblank")
-     * @Assert\MinLength(limit="3", message="article.validation.title.short")
-     * @Assert\MaxLength(limit="255", message="article.validation.title.long")
+     * @Assert\Length(min="3", max="255", minMessage="article.validation.title.short", maxMessage="article.validation.title.long")
      */
     private $title;
 
