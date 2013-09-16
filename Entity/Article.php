@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM,
  *
  * @ORM\Table(name="article")
  * @ORM\Entity(repositoryClass="Xi\Bundle\ArticleBundle\Repository\ArticleRepository")
- */ 
+ */
 class Article implements Taggable, SearchType
 {
     /**
@@ -26,10 +26,10 @@ class Article implements Taggable, SearchType
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-   
+
     /**
-     * @var string $title 
-     * 
+     * @var string $title
+     *
      * @ORM\Column(name="title", type="string", length=255)
      * @Assert\NotBlank(message="article.validation.title.notblank")
      * @Assert\MinLength(limit="3", message="article.validation.title.short")
@@ -42,23 +42,23 @@ class Article implements Taggable, SearchType
      * @Doctrine\ORM\Mapping\Column(length=255, unique=true)
      */
     private $slug;
-    
+
     /**
      * @var string $content
-     * 
+     *
      * @ORM\Column(name="introduction", type="text")
      * @Assert\NotBlank(message="article.validation.introduction.notblank")
      */
-    private $introduction; 
-    
+    private $introduction;
+
     /**
      * @var string $content
-     * 
+     *
      * @ORM\Column(name="content", type="text")
      * @Assert\NotBlank(message="article.validation.content.notblank")
      */
     private $content;
-    
+
     /**
      * @var datetime $updated
      * @Gedmo\Timestampable(on="update")
@@ -68,34 +68,34 @@ class Article implements Taggable, SearchType
 
     /**
      * @var datetime $created
-     * 
+     *
      * @Gedmo\Timestampable(on="create")
      * @ORM\Column(name="created", type="datetime")
      */
-    protected $created; 
-    
+    protected $created;
+
     /**
      * @var datetime $created
-     * 
+     *
      * @ORM\Column(name="publish_date", type="datetime", nullable=true)
-     */    
+     */
     protected $publishDate;
-      
+
     /**
      * @var datetime $created
-     * 
+     *
      * @ORM\Column(name="expiration_date", type="datetime", nullable=true)
-     */     
+     */
     protected $expirationDate;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Xi\Bundle\ArticleBundle\Entity\Block", mappedBy="article")
      */
     protected $blocks;
 
-    
+
     protected $tags;
-    
+
     public function __construct()
     {
         $this->blocks = new ArrayCollection();
@@ -108,8 +108,8 @@ class Article implements Taggable, SearchType
     public function getSlug()
     {
         return $this->slug;
-    }    
-    
+    }
+
     /**
      * @param string $slug
      * @return Article
@@ -119,43 +119,43 @@ class Article implements Taggable, SearchType
         $this->slug = $slug;
         return $this;
     }
-    
+
     /**
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
     }
-    
+
     /**
      * @param string $title
-     * @return Article 
+     * @return Article
      */
     public function setTitle($title)
     {
         $this->title = $title;
         return $this;
     }
-    
+
     /**
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
         return $this->title;
     }
-    
+
     /**
      * @param string $content
-     * @return Article 
+     * @return Article
      */
     public function setContent($content)
     {
         $this->content = $content;
         return $this;
     }
-    
+
     /**
      * @return string
      */
@@ -163,17 +163,17 @@ class Article implements Taggable, SearchType
     {
         return $this->content;
     }
-    
+
     /**
      * @param string $introduction
-     * @return Article 
+     * @return Article
      */
     public function setIntroduction($introduction)
     {
         $this->introduction = $introduction;
         return $this;
     }
-    
+
     /**
      * @return string
      */
@@ -181,10 +181,10 @@ class Article implements Taggable, SearchType
     {
         return $this->introduction;
     }
- 
+
     /**
      * @param datetime $updated
-     * @return Article 
+     * @return Article
      */
     public function setUpdated($updated)
     {
@@ -194,41 +194,41 @@ class Article implements Taggable, SearchType
 
     /**
      * @param datetime $publishDate
-     * @return Article 
+     * @return Article
      */
     public function setPublishDate($publishDate)
     {
         $this->publishDate = $publishDate;
         return $this;
     }
-    
+
     /**
-     * @return datetime 
-     */    
+     * @return datetime
+     */
     public function getPublishDate()
     {
         return $this->publishDate;
     }
-    
+
     /**
      * @param datetime $expirationDate
-     * @return Article 
+     * @return Article
      */
     public function setExpirationDate($expirationDate)
     {
         $this->expirationDate = $expirationDate;
     }
-    
+
     /**
-     * @return datetime 
+     * @return datetime
      */
     public function getExpirationDate()
     {
         return $this->expirationDate;
     }
-    
+
     /**
-     * @return datetime 
+     * @return datetime
      */
     public function getUpdated()
     {
@@ -244,13 +244,13 @@ class Article implements Taggable, SearchType
     }
 
     /**
-     * @return datetime 
+     * @return datetime
      */
     public function getCreated()
     {
         return $this->created;
-    }    
-    
+    }
+
     /**
      * @param  Block $block
      * @return Article
@@ -259,7 +259,7 @@ class Article implements Taggable, SearchType
     {
         if (!$this->blocks->contains($block)) {
             $this->blocks->add($block);
-            $block->setArticle($this);           
+            $block->setArticle($this);
         }
         return $this;
     }
@@ -274,7 +274,7 @@ class Article implements Taggable, SearchType
 
     /**
      * @param Block $block
-     * @return Article 
+     * @return Article
      */
     public function removeBlock(Block $block)
     {
@@ -284,9 +284,9 @@ class Article implements Taggable, SearchType
         }
         return $this;
     }
-    
+
     /**
-     * @return Article 
+     * @return Article
      */
     public function removeBlocks()
     {
@@ -295,7 +295,7 @@ class Article implements Taggable, SearchType
         }
         return $this;
     }
-  
+
     /**
      * @return ArrayCollection
      */
@@ -310,10 +310,10 @@ class Article implements Taggable, SearchType
      * @param type ArrayCollection
      */
     public function setTags($tags)
-    {   
+    {
         $this->tags = $tags;
     }
-      
+
     /**
      * @return string
      */
@@ -328,23 +328,23 @@ class Article implements Taggable, SearchType
     public function getTaggableId()
     {
         return $this->getId();
-    }    
-    
+    }
+
     /**
-     * resets slug. This is obsolete in doctrine 2.3 where you can just use ->setSlug('') 
+     * resets slug. This is obsolete in doctrine 2.3 where you can just use ->setSlug('')
      */
     public function resetSlug()
     {
-        $this->slug = '';
+        $this->slug = null;
     }
-    
+
     /**
-     * @return string 
+     * @return string
      */
     public function getSearchType()
     {
         return 'article';
     }
-    
-    
+
+
 }
