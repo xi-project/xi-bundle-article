@@ -334,7 +334,7 @@ class Article implements Taggable, SearchType
      */
     public function resetSlug()
     {
-        $this->slug = '';
+        $this->slug = null;
     }
     
     /**
